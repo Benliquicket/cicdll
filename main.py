@@ -5,10 +5,6 @@ from modules.citation import Citation
 
 app = Flask(__name__)
 
-path = '/home/Benliquicket/mysite/cicdll'
-if path not in sys.path:
-    sys.path.append(path)
-
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
