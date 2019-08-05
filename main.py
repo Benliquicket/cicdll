@@ -1,6 +1,4 @@
 import git
-import os
-import requests
 from flask import Flask, render_template, request
 
 from modules.citation import Citation
@@ -15,19 +13,7 @@ def webhook():
         origin = repo.remotes.origin
         repo.create_head('master', origin.refs.master).set_tracking_branch(origin.refs.master).checkout()
         origin.pull()
-
-        my_domain = os.environ['PYTHONANYWHERE_DOMAIN']
-        username = os.environ['PYTHONANYWHERE_USERNAME']
-        token = os.environ['PYTHONANYWHERE_API_TOKEN']
-
-        response = requests.post(
-            'https://www.pythonanywhere.com/api/v0/user/{username}/webapps/{domain}/reload/'.format(
-                username=username, domain=my_domain
-            ),
-            headers={'Authorization': 'Token {token}'.format(token=token)}
-        )
-        if response.status_code == 200:
-            return '', 200
+        return '', 200
     else:
         return '', 400
 
