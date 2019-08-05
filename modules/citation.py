@@ -4,15 +4,9 @@ class Citation(object):
         self.fine = fine
         self.balance = fine
 
-        if not fine:
-            self.status = "no charge"
-        else:
-            self.status = "unpaid"
+        self.status = "no charge" if not fine else "unpaid"
 
     def pay(self, amount):
         self.balance -= amount
 
-        if self.balance:
-            self.status = "partially paid"
-        else:
-            self.status = "paid"
+        self.status = "partially paid" if self.balance else "paid"
