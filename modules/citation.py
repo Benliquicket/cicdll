@@ -10,7 +10,7 @@ class Citation(object):
             self.status = "unpaid"
 
     def pay(self, amount):
-        self.balance -= amount
+        self.balance += amount
 
         if self.balance:
             self.status = "partially paid"
