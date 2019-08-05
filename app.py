@@ -9,7 +9,12 @@ app = Flask(__name__)
 def index():
     citation = Citation(50)
     citation.pay(40)
-    return render_template("index.html", data=citation.balance)
+    return render_template(
+        "index.html",
+        fine=citation.fine,
+        balance=citation.balance,
+        status=citation.status
+    )
 
 
 if __name__ == "__main__":
