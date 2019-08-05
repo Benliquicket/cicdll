@@ -1,13 +1,9 @@
-import git, sys
+import git
 from flask import Flask, render_template, request
 
 from modules.citation import Citation
 
 app = Flask(__name__)
-
-path = '/home/Benliquicket/mysite/cicdll'
-if path not in sys.path:
-    sys.path.append(path)
 
 
 @app.route('/webhook', methods=['POST'])
