@@ -10,3 +10,5 @@ class Citation(object):
         self.balance -= amount
 
         self.status = "partially paid" if self.balance else "paid"
+
+        print self.status
