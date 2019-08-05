@@ -1,4 +1,4 @@
-import git, sys
+import git
 from flask import Flask, render_template, request
 
 from modules.citation import Citation
