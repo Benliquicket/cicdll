@@ -1,8 +1,21 @@
-from flask import Flask, render_template
+import git
+from flask import Flask, render_template, request
 
 from modules.citation import Citation
 
 app = Flask(__name__)
+
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('./')
+        origin = repo.remotes.origin
+        repo.create_head('master', origin.refs.master).set_tracking_branch(origin.refs.master).checkout()
+        origin.pull()
+        return '', 200
+    else:
+        return '', 400
 
 
 @app.route('/')
@@ -18,4 +31,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
