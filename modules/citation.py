@@ -9,6 +9,4 @@ class Citation(object):
     def pay(self, amount):
         self.balance -= amount
 
-        print self.balance
-
         self.status = "partially paid" if self.balance else "paid"
