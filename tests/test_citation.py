@@ -42,5 +42,5 @@ def test_charged_citation_full_payment(charged_citation):
 def test_overpaying_citation(charged_citation):
     try:
         charged_citation.pay(60)
-    except Exception, e:
+    except Exception as e:
         assert str(e) == "NO"
