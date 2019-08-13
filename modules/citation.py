@@ -7,7 +7,9 @@ class Citation(object):
         self.status = "no charge" if not fine else "unpaid"
 
     def pay(self, amount):
-        print "dont change - to +"
+        if amount > self.balance:
+            raise Exception("NO")
+
         self.balance -= amount
 
         self.status = "partially paid" if self.balance else "paid"
